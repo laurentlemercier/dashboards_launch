@@ -6,6 +6,7 @@ import time
 
 year, month, day = time.strftime("%y,%m,%d").split(',')
 today_date = year + month + day
+user_path = os.getenv('HOMEDRIVE') + os.getenv('HOMEPATH')
 
 def launch_banks():
 	url_ih = "https://www.devenir-rentier.fr/profile.php?section=tools&id=9897"
@@ -20,9 +21,7 @@ def launch_banks():
 	webbrowser.get(chrome_path).open_new(url_hdf)
 
 def launch_dashboards():
-	#C:\Users\Fabrice Foucaud\Google Drive\Dashboards
-	#C:\Program Files (x86)\LibreOffice 5\program
-	dashboards_path = "C:/Users/Fabrice Foucaud/Google Drive/Dashboards"
+	dashboards_path = user_path + "/Google Drive/Dashboards"
 	os.chdir(dashboards_path)
 	list_of_dashboards = glob.glob('*')
 	src_dashboards = max(list_of_dashboards, key=os.path.getctime)
@@ -36,9 +35,7 @@ def launch_dashboards():
 	os.system(cmd_dash)
 
 def launch_xlsportfolio():
-	#C:\Users\Fabrice Foucaud\Google Drive\xlsPorfolio
-	#C:\Program Files (x86)\Microsoft Office\Office12
-	xls_path = "C:/Users/Fabrice Foucaud/Google Drive/xlsPorfolio"
+	xls_path = user_path + "/Google Drive/xlsPorfolio"
 	os.chdir(xls_path)
 	list_of_xls = glob.glob('*')
 	src_xls = max(list_of_xls, key=os.path.getctime)
